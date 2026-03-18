@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: grocery-app-frontend
+    env: static
+    repo: https://github.com/Amol-2003/React-grocery-app
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    routes:
+      - type: rewrite
+        source: /api/*
+        destination: /:path
+  - type: web
+    name: grocery-app-backend
+    env: node
+    repo: https://github.com/Amol-2003/React-grocery-app
+    plan: free
+    healthCheckPath: /
+    buildCommand: cd backend && npm install
+    startCommand: cd backend && node server.js
