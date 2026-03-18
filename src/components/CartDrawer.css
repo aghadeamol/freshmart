@@ -1,0 +1,187 @@
+.cart-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(4px);
+  z-index: 200;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+.cart-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.cart-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 420px;
+  max-width: 100vw;
+  background: var(--bg-card);
+  border-left: 1px solid var(--border);
+  z-index: 300;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: -8px 0 40px rgba(0,0,0,0.4);
+}
+.cart-drawer.open { transform: translateX(0); }
+
+.cart-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border);
+}
+.cart-title { font-size: 20px; font-weight: 700; }
+.cart-close-btn {
+  background: var(--bg-card2);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  width: 36px; height: 36px;
+  border-radius: 99px;
+  font-size: 14px;
+  display: flex; align-items: center; justify-content: center;
+  transition: color 0.2s, background 0.2s;
+}
+.cart-close-btn:hover { color: var(--text); background: var(--border); }
+
+.cart-empty {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: var(--muted);
+  padding: 40px;
+}
+.empty-icon { font-size: 64px; margin-bottom: 10px; }
+.cart-empty p { font-size: 18px; font-weight: 600; color: var(--text); }
+.cart-empty small { font-size: 14px; text-align: center; }
+
+.cart-items {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--bg-card2);
+  border-radius: 12px;
+  padding: 14px;
+  border: 1px solid var(--border);
+}
+.cart-item-emoji { font-size: 36px; flex-shrink: 0; }
+.cart-item-info { flex: 1; min-width: 0; }
+.cart-item-name { font-size: 14px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cart-item-unit { font-size: 12px; color: var(--muted); margin: 2px 0; }
+.cart-item-price { font-size: 15px; font-weight: 700; color: var(--green); }
+
+.cart-item-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.qty-controls {
+  display: flex;
+  align-items: center;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.qty-btn {
+  width: 30px; height: 30px;
+  background: none;
+  color: var(--text);
+  font-size: 16px;
+  font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  font-family: inherit;
+  transition: background 0.15s;
+}
+.qty-btn:hover { background: var(--border); }
+.qty-count {
+  min-width: 28px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--green);
+}
+
+.remove-btn {
+  background: none;
+  font-size: 16px;
+  color: var(--muted);
+  padding: 4px;
+  border-radius: 6px;
+  transition: color 0.2s;
+}
+.remove-btn:hover { color: var(--red); }
+
+.cart-footer {
+  padding: 20px 24px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cart-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: var(--muted);
+}
+.free { color: var(--green); font-weight: 600; }
+.cart-total {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+}
+
+.checkout-btn {
+  background: linear-gradient(135deg, #22c55e, #a3e635);
+  color: #0f172a;
+  font-weight: 800;
+  font-size: 16px;
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  font-family: inherit;
+  margin-top: 4px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 6px 20px rgba(34,197,94,0.3);
+}
+.checkout-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 28px rgba(34,197,94,0.4);
+}
+
+.clear-btn {
+  background: none;
+  color: var(--muted);
+  font-size: 13px;
+  font-family: inherit;
+  padding: 6px;
+  text-align: center;
+  transition: color 0.2s;
+}
+.clear-btn:hover { color: var(--red); }
