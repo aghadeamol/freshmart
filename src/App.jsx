@@ -31,12 +31,8 @@ function AppContent() {
       const data = await fetchProducts(activeCategory, searchQuery);
       setProducts(data);
     } catch {
-      // Fall back to local data if backend not available
-      const { products: local } = await import("./data/products");
-      let filtered = local;
-      if (activeCategory !== "all") filtered = filtered.filter(p => p.category === activeCategory);
-      if (searchQuery) filtered = filtered.filter(p => p.name.toLowerCase().includes(searchQuery.toLowerCase()));
-      setProducts(filtered);
+      console.error("Failed to fetch products from backend.");
+      setProducts([]);
     } finally {
       setLoading(false);
     }
