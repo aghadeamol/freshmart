@@ -22,8 +22,17 @@ app.use("/api/products", productsRouter);
 app.use("/api/cart", cartRouter);
 app.use("/api/orders", ordersRouter);
 
+const path = require("path");
+
 app.get("/api/health", (req, res) => {
   res.json({ status: "ok", message: "FreshMart API running with MongoDB 🛒" });
+});
+
+// Serve frontend static files
+app.use(express.static(path.join(__dirname, "../dist")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../dist/index.html"));
 });
 
 app.listen(PORT, () => {
